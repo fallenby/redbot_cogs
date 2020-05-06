@@ -1,0 +1,5 @@
+api:
+  url: https://covid19-graphql.now.sh/
+
+defaults:
+  country: South Africa
