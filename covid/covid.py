@@ -10,7 +10,6 @@ import quiz
 import discord
 import yaml
 import pathlib
-
 import matplotlib
 import matplotlib.pyplot as plt
 
@@ -21,7 +20,7 @@ class CovidCog(commands.Cog):
     """COVID19 stats bot"""
 
     @commands.group(aliases=["cvd"], invoke_without_command=True)
-    async def covid(self, ctx, country = config["defaults"]["country"]):
+    async def covid(self, ctx, country = "South Africa"):
         """Fetch the most-recent COVID19 results for a given country."""
 
         world_query = """
@@ -38,7 +37,7 @@ class CovidCog(commands.Cog):
         }
         """
 
-        url = config["api"]["url"]
+        url = "https://covid19-graphql.now.sh/"
 
         r_world = await quiz.execute_async(world_query, url=url)
 
@@ -71,7 +70,7 @@ class CovidCog(commands.Cog):
         await ctx.send(embed=embed)
 
     @covid.command(aliases=["g"])
-    async def graph(self, ctx, country = config["defaults"]["country"]):
+    async def graph(self, ctx, country = "South Africa"):
         """Fetch the most-recent COVID19 results for a given country."""
 
         query = """
@@ -88,7 +87,7 @@ class CovidCog(commands.Cog):
         }
         """ % (country)
 
-        url = config["api"]["url"]
+        url = "https://covid19-graphql.now.sh/"
 
         r = await quiz.execute_async(query, url=url)
 
