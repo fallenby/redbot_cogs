@@ -4,7 +4,6 @@
     "name" : "COVID19 stat bot",
     "short" : "This cog provides the most-recent COVID19 stats for a given country.",
     "requirements": [
-        "aiohttp[speedups]",
         "quiz",
         "discord.py"
     ],
