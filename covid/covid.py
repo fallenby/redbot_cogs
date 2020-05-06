@@ -8,13 +8,9 @@ from redbot.core import commands
 
 import quiz
 import discord
-import yaml
 import pathlib
 import matplotlib
 import matplotlib.pyplot as plt
-
-with open('covid/covid.yml', 'r') as file:
-    config = yaml.full_load(file)
 
 class CovidCog(commands.Cog):
     """COVID19 stats bot"""
