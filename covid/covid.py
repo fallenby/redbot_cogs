@@ -28,10 +28,10 @@ class CovidCog(commands.Cog):
 
         r = await quiz.execute_async(query, url=url)
 
-        embed = discord.Embed(title="COVID19 stats", description="Most recent stats for {}.".format(r["country"]["name"]), color=await ctx.embed_colour())
-        embed.add_field(name="Date", value=r["country"]["mostRecent"]["date"], inline=False)
-        embed.add_field(name="Confirmed", value=r["country"]["mostRecent"]["confirmed"], inline=False)
-        embed.add_field(name="Recoveries", value=r["country"]["mostRecent"]["recovered"], inline=False)
-        embed.add_field(name="Deaths", value=r["country"]["mostRecent"]["deaths"], inline=False)
+        embed = discord.Embed(title="COVID19", description="Stats for {} on {}.".format(r["country"]["name"], r["country"]["mostRecent"]["date"]), color=await ctx.embed_colour())
+        embed.add_field(name="Confirmed", value=r["country"]["mostRecent"]["confirmed"], inline=True)
+        embed.add_field(name="Recoveries", value=r["country"]["mostRecent"]["recovered"], inline=True)
+        embed.add_field(name="Deaths", value=r["country"]["mostRecent"]["deaths"], inline=True)
+        embed.set_footer(text="https://github.com/fallenby/redbot_cogs/tree/master/covid", icon_url="https://github.com/fluidicon.png")
 
         await ctx.send(embed=embed)
