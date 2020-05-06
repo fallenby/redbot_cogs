@@ -1,5 +1,5 @@
 {
-    "author" : ["Xenartha#4444"],
+    "author" : ["fallenby (https://github.com/fallenby/)"],
     "install_msg" : "The COVID19 stat cog has been installed.",
     "name" : "COVID19 stat bot",
     "short" : "This cog provides the most-recent COVID19 stats for a given country.",
