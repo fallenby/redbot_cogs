@@ -17,7 +17,7 @@ e.g.
 
 ### Example display
 
-![COVID19 stats for United Kingdom](https://i.gyazo.com/6790fc9a978d561f2cd0a532eaef0d3c.png)
+![COVID19 stats for South Africa](https://i.gyazo.com/82f8dc4dc38bf262d6b861091737a56a.png)
 
 ## Installation
 
