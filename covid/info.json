@@ -1,0 +1,16 @@
+{
+    "author" : ["Xenartha#4444"],
+    "install_msg" : "The COVID19 stat cog has been installed.",
+    "name" : "COVID19 stat bot",
+    "short" : "This cog provides the most-recent COVID19 stats for a given country.",
+    "requirements": [
+        "aiohttp[speedups]",
+        "quiz",
+        "discord.py"
+    ],
+    "description" : "This cog provides the most-recent COVID19 stats for a given country, defaulting to South Africa.",
+    "tags" : [
+        "covid",
+        "covid19"
+    ]
+}
