@@ -52,15 +52,19 @@ class CovidCog(commands.Cog):
                 c_recovered = r_country["mostRecent"]["recovered"]
                 c_deceased = r_country["mostRecent"]["deaths"]
 
+        p_confirmed = round((float(c_confirmed) / float(t_confirmed)) * 100, 2)
+        p_recovered = round((float(c_recovered) / float(t_recovered)) * 100, 2)
+        p_deceased = round((float(c_deceased) / float(t_deceased)) * 100, 2)
+
         embed = discord.Embed(title="COVID19", description="Stats for {}.".format(c_date), color=await ctx.embed_colour())
         embed.add_field(name="---", value="**Worldwide stats**", inline=False)
         embed.add_field(name="Confirmed", value=f'{t_confirmed:n}', inline=True)
         embed.add_field(name="Recovered", value=f'{t_recovered:n}', inline=True)
         embed.add_field(name="Deceased", value=f'{t_deceased:n}', inline=True)
-        embed.add_field(name="---", value="**{} stats**".format(country), inline=False)
-        embed.add_field(name="Confirmed", value=f'{c_confirmed:n}', inline=True)
-        embed.add_field(name="Recovered", value=f'{c_recovered:n}', inline=True)
-        embed.add_field(name="Deceased", value=f'{c_deceased:n}', inline=True)
+        embed.add_field(name="---", value="**{} stats (% of worldwide)**".format(country), inline=False)
+        embed.add_field(name="Confirmed", value=f'{c_confirmed:n}' + " ({}%)".format(p_confirmed), inline=True)
+        embed.add_field(name="Recovered", value=f'{c_recovered:n}' + " ({}%)".format(p_recovered), inline=True)
+        embed.add_field(name="Deceased", value=f'{c_deceased:n}' + " ({}%)".format(p_deceased), inline=True)
         embed.set_footer(text="https://github.com/fallenby/redbot_cogs/tree/master/covid", icon_url="https://github.com/fluidicon.png")
 
         await ctx.send(embed=embed)
