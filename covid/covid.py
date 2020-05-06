@@ -30,8 +30,8 @@ class CovidCog(commands.Cog):
 
         embed = discord.Embed(title="COVID19", description="Stats for {} on {}.".format(r["country"]["name"], r["country"]["mostRecent"]["date"]), color=await ctx.embed_colour())
         embed.add_field(name="Confirmed", value=r["country"]["mostRecent"]["confirmed"], inline=True)
-        embed.add_field(name="Recoveries", value=r["country"]["mostRecent"]["recovered"], inline=True)
-        embed.add_field(name="Deaths", value=r["country"]["mostRecent"]["deaths"], inline=True)
+        embed.add_field(name="Recovered", value=r["country"]["mostRecent"]["recovered"], inline=True)
+        embed.add_field(name="Deceased", value=r["country"]["mostRecent"]["deaths"], inline=True)
         embed.set_footer(text="https://github.com/fallenby/redbot_cogs/tree/master/covid", icon_url="https://github.com/fluidicon.png")
 
         await ctx.send(embed=embed)
