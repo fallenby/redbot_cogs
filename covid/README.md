@@ -3,6 +3,8 @@ COVID19 stat cog.
 
 This cog provides the most-recent COVID19 stats for a given country, defaulting to South Africa.
 
+This cog uses the [COVID19 GraphQL QPI](https://github.com/rlindskog/covid19-graphql).
+
 ## Usage
 
 ```
