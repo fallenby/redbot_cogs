@@ -1,6 +1,11 @@
 # redbot_cogs
 Red Discord bot (https://github.com/Cog-Creators/Red-DiscordBot) cogs.
 
+## Available cogs
+
+1. [COVID](https://github.com/fallenby/redbot_cogs/tree/master/covid)  
+COVID19 stat display
+
 ## Installation
 
 ### Load the Downloader cog
