@@ -6,7 +6,8 @@
     "requirements": [
         "quiz",
         "discord.py",
-        "pyyaml"
+        "pyyaml",
+        "matplotlib"
     ],
     "description" : "This cog provides the most-recent COVID19 stats for a given country, defaulting to South Africa.",
     "tags" : [
