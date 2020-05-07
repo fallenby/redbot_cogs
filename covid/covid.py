@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 from redbot.core import commands
+from redbot.core.utils import chat_formatting
 
 import quiz
 import discord
@@ -20,6 +21,8 @@ class CovidCog(commands.Cog):
     async def covid(self, ctx, country = "South Africa"):
         """Fetch the most-recent COVID19 results for a given country."""
 
+        fetching_message = await ctx.send(chat_formatting.info("Fetching COVID19 stats for {}..".format(country)))
+
         totals = await self.fetch_stats_for_date(country)
         
         c_date = datetime.now().date().strftime("%Y-%m-%d")
@@ -27,16 +30,18 @@ class CovidCog(commands.Cog):
         # Construct the return embed chat message
         embed = discord.Embed(title="COVID19", description="Stats for {}.".format(c_date), color=await ctx.embed_colour())
         embed.add_field(name="---", value="**Worldwide stats**", inline=False)
-        embed.add_field(name="Confirmed", value=f'{totals["world_confirmed"]:n}' + "({})".format(self.prettify_delta_display(totals["world_confirmed_delta"])), inline=True)
-        embed.add_field(name="Recovered", value=f'{totals["world_recovered"]:n}' + "({})".format(self.prettify_delta_display(totals["world_recovered_delta"])), inline=True)
-        embed.add_field(name="Deceased", value=f'{totals["world_deceased"]:n}' + "({})".format(self.prettify_delta_display(totals["world_deceased_delta"])), inline=True)
-        embed.add_field(name="Active cases", value=f'{totals["world_confirmed"] - totals["world_recovered"] - totals["world_deceased"]:n}' + "({})".format(self.prettify_delta_display(totals["world_active_delta"])), inline=True)
+        embed.add_field(name="Confirmed", value=f'{totals["world_confirmed"]:n}' + " ({})".format(self.prettify_delta_display(totals["world_confirmed_delta"])), inline=True)
+        embed.add_field(name="Recovered", value=f'{totals["world_recovered"]:n}' + " ({})".format(self.prettify_delta_display(totals["world_recovered_delta"])), inline=True)
+        embed.add_field(name="Deceased", value=f'{totals["world_deceased"]:n}' + " ({})".format(self.prettify_delta_display(totals["world_deceased_delta"])), inline=True)
+        embed.add_field(name="Active cases", value=f'{totals["world_confirmed"] - totals["world_recovered"] - totals["world_deceased"]:n}' + " ({})".format(self.prettify_delta_display(totals["world_active_delta"])), inline=True)
         embed.add_field(name="---", value="**{} stats (% of worldwide)**".format(country), inline=False)
         embed.add_field(name="Confirmed", value=f'{totals["country_confirmed"]:n}' + " ({}, {}%)".format(self.prettify_delta_display(totals["country_confirmed_delta"]), totals["country_percent_of_world_confirmed"]), inline=True)
         embed.add_field(name="Recovered", value=f'{totals["country_recovered"]:n}' + " ({}, {}%)".format(self.prettify_delta_display(totals["country_recovered_delta"]), totals["country_percent_of_world_recovered"]), inline=True)
         embed.add_field(name="Deceased", value=f'{totals["country_deceased"]:n}' + " ({}, {}%)".format(self.prettify_delta_display(totals["country_deceased_delta"]), totals["country_percent_of_world_deceased"]), inline=True)
         embed.add_field(name="Active cases", value=f'{totals["country_confirmed"] - totals["country_recovered"] - totals["country_deceased"]:n}' + " ({}, {}%)".format(self.prettify_delta_display(totals["country_active_delta"]), totals["country_percent_of_world_active"]), inline=True)
         embed.set_footer(text="https://github.com/fallenby/redbot_cogs/tree/master/covid", icon_url="https://github.com/fluidicon.png")
+
+        await fetching_message.delete()
 
         await ctx.send(embed=embed)
 
