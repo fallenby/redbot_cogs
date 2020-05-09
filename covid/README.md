@@ -17,7 +17,7 @@ e.g.
 
 ### Example display
 
-![COVID19 stats for South Africa](https://i.gyazo.com/82f8dc4dc38bf262d6b861091737a56a.png)
+![COVID19 stats for South Africa](https://i.gyazo.com/f24a264e28b3e8cf7263669cc63cbd72.png)
 
 ## Installation
 
