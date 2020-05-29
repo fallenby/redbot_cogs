@@ -1,0 +1,17 @@
+{
+    "author": [
+        "fallenby (https://github.com/fallenby/)"
+    ],
+    "install_msg": "The Pushover notification cog has been installed.",
+    "name": "Pushover notification cog",
+    "short": "This cog sends you notifications with Pushover.",
+    "requirements": [
+        "python-pushover",
+        "bs4"
+    ],
+    "description": "This cog sends you notifications with Pushover.",
+    "tags": [
+        "push",
+        "pushover"
+    ]
+}
