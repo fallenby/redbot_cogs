@@ -230,19 +230,19 @@ class CovidCog(commands.Cog):
         if date is None:
             date = datetime.now().date()
 
-        latest_date = None
+            latest_date = None
 
-        for r_result in results["results"]:
-            if not latest_date:
-                latest_date = datetime.strptime(r_result["date"])
-                continue
-            if datetime.strptime(r_result["date"]) > latest_date:
-                latest_date = datetime.strptime(r_result["date"])
+            for r_result in results["results"]:
+                if not latest_date:
+                    latest_date = datetime.strptime(r_result["date"], "%Y-%m-%d").date()
+                    continue
+                if datetime.strptime(r_result["date"], "%Y-%m-%d").date() > latest_date:
+                    latest_date = datetime.strptime(r_result["date"], "%Y-%m-%d").date()
+
+            if latest_date:
+                date = latest_date
 
         day_before_result_date = date - timedelta(days=1)
-
-        if latest_date:
-            date = latest_date
 
         # Worldwide total counts for latest date
         t_confirmed = 0
