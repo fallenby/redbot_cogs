@@ -31,6 +31,19 @@ class CovidCog(commands.Cog):
         c_date = datetime.now().date().strftime("%Y-%m-%d")
 
         # Construct the return embed chat message
+        if totals["world_confirmed"] == 0:
+            embed = discord.Embed(
+                title="COVID19",
+                description="No stats for {} were found yet. Please try again later.".format(c_date),
+                color=await ctx.embed_colour(),
+            )
+
+            await fetching_message.delete()
+
+            await ctx.send(embed=embed)
+
+            return
+
         embed = discord.Embed(
             title="COVID19",
             description="Stats for {}.".format(c_date),
