@@ -3,7 +3,7 @@ import tempfile
 import os
 from datetime import datetime, timedelta
 
-locale.setlocale(locale.LC_ALL, "C")
+locale.setlocale(locale.LC_ALL, "C.UTF-8")
 
 from redbot.core import commands
 from redbot.core.utils import chat_formatting
