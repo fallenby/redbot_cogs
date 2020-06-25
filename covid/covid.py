@@ -222,7 +222,7 @@ class CovidCog(commands.Cog):
             }
         }
         """ % (
-            date.strftime("%Y-%m-%d")
+            datetime.now().date().strftime("%Y-%m-%d")
         )
 
         results = await quiz.execute_async(query, url=url)
