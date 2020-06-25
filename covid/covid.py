@@ -26,7 +26,12 @@ class CovidCog(commands.Cog):
             chat_formatting.info("Fetching COVID19 stats for {}..".format(country))
         )
 
-        totals = await self.fetch_stats_for_date(country)
+        today_date = datetime.now().date()
+
+        # Data for results lags behind for 1 day
+        result_date = today_date - timedelta(days=1)
+
+        totals = await self.fetch_stats_for_date(country, result_date)
 
         c_date = datetime.now().date().strftime("%Y-%m-%d")
 
@@ -203,13 +208,6 @@ class CovidCog(commands.Cog):
     async def fetch_stats_for_date(self, country, date=None):
         url = "https://covid19-graphql.now.sh/"
 
-        if date is None:
-            date = datetime.now().date()
-
-        # Data for results lags behind for 1 day
-        result_date = date - timedelta(days=1)
-        day_before_result_date = result_date - timedelta(days=1)
-
         query = """
         {
             results (date: { lt: "%s" }) {
@@ -228,6 +226,23 @@ class CovidCog(commands.Cog):
         )
 
         results = await quiz.execute_async(query, url=url)
+
+        if date is None:
+            date = datetime.now().date()
+
+        latest_date = None
+
+        for r_result in results["results"]:
+            if not latest_date:
+                latest_date = datetime.strptime(r_result["date"])
+                continue
+            if datetime.strptime(r_result["date"]) > latest_date:
+                latest_date = datetime.strptime(r_result["date"])
+
+        day_before_result_date = date - timedelta(days=1)
+
+        if latest_date:
+            date = latest_date
 
         # Worldwide total counts for latest date
         t_confirmed = 0
