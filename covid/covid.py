@@ -226,6 +226,14 @@ class CovidCog(commands.Cog):
         t_y_recovered = 0
         t_y_deceased = 0
 
+        c_confirmed = 0
+        c_recovered = 0
+        c_deceased = 0
+
+        c_y_confirmed = 0
+        c_y_recovered = 0
+        c_y_deceased = 0
+
         for r_result in results["results"]:
             if (
                 datetime.strptime(r_result["date"], "%Y-%m-%d").date()
