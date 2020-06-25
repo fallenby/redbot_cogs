@@ -226,11 +226,10 @@ class CovidCog(commands.Cog):
         )
 
         results = await quiz.execute_async(query, url=url)
+        latest_date = date
 
         if date is None:
             date = datetime.now().date()
-
-            latest_date = None
 
             for r_result in results["results"]:
                 if not latest_date:
@@ -239,11 +238,8 @@ class CovidCog(commands.Cog):
                 if datetime.strptime(r_result["date"], "%Y-%m-%d").date() > latest_date:
                     latest_date = datetime.strptime(r_result["date"], "%Y-%m-%d").date()
 
-            if latest_date:
-                date = latest_date
-
-        result_date = date
-        day_before_result_date = date - timedelta(days=1)
+        result_date = latest_date
+        day_before_result_date = result_date - timedelta(days=1)
 
         # Worldwide total counts for latest date
         t_confirmed = 0
