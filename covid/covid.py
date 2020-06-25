@@ -290,8 +290,8 @@ class CovidCog(commands.Cog):
             ),
             "country_percent_of_world_active": round(
                 (
-                    float(c_confirmed - c_recovered - c_deceased)
-                    / float(t_confirmed - t_recovered - t_deceased)
+                    (float(c_confirmed - c_recovered - c_deceased)
+                    / float(t_confirmed - t_recovered - t_deceased)) if float(t_confirmed - t_recovered - t_deceased) else 0
                 )
                 * 100,
                 2,
