@@ -242,6 +242,7 @@ class CovidCog(commands.Cog):
             if latest_date:
                 date = latest_date
 
+        result_date = date
         day_before_result_date = date - timedelta(days=1)
 
         # Worldwide total counts for latest date
